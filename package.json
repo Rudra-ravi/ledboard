@@ -1,0 +1,24 @@
+{
+  "name": "ledboard",
+  "version": "1.0.0",
+  "description": "A digital LED board implementation using Playwright for screenshots and visual effects",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "led",
+    "board",
+    "playwright",
+    "screenshots"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.42.1",
+    "express": "^4.18.2",
+    "jimp": "^0.22.10",
+    "socket.io": "^4.7.2"
+  }
+}
