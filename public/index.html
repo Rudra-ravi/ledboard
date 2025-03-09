@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED Board</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LED Board Control Panel</h1>
+    </header>
+    
+    <main>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="screenshot">Screenshot</button>
+        <button class="tab-btn" data-tab="process">Process</button>
+        <button class="tab-btn" data-tab="text">Text</button>
+        <button class="tab-btn" data-tab="gallery">Gallery</button>
+      </div>
+      
+      <div class="tab-content">
+        <!-- Screenshot Tab -->
+        <div class="tab-pane active" id="screenshot">
+          <h2>Capture Website Screenshot</h2>
+          <form id="screenshot-form">
+            <div class="form-group">
+              <label for="url">Website URL:</label>
+              <input type="url" id="url" name="url" required placeholder="https://example.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="filename">Filename:</label>
+              <input type="text" id="filename" name="filename" required placeholder="example.png">
+            </div>
+            
+            <div class="form-group">
+              <label for="selector">CSS Selector (optional):</label>
+              <input type="text" id="selector" name="selector" placeholder="#main-content">
+            </div>
+            
+            <button type="submit" class="btn primary">Capture Screenshot</button>
+          </form>
+          
+          <div class="result-container" id="screenshot-result">
+            <!-- Screenshot result will be displayed here -->
+          </div>
+        </div>
+        
+        <!-- Process Tab -->
+        <div class="tab-pane" id="process">
+          <h2>Apply LED Effect</h2>
+          <form id="process-form">
+            <div class="form-group">
+              <label for="input-file">Input Image:</label>
+              <select id="input-file" name="inputFile" required>
+                <option value="">Select an image</option>
+                <!-- Options will be populated dynamically -->
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="output-filename">Output Filename:</label>
+              <input type="text" id="output-filename" name="outputFilename" required placeholder="processed.png">
+            </div>
+            
+            <div class="form-group">
+              <label for="brightness">Brightness:</label>
+              <input type="range" id="brightness" name="brightness" min="-1" max="1" step="0.1" value="0">
+              <span class="range-value">0</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="contrast">Contrast:</label>
+              <input type="range" id="contrast" name="contrast" min="-1" max="1" step="0.1" value="0">
+              <span class="range-value">0</span>
+            </div>
+            
+            <div class="form-group checkbox">
+              <input type="checkbox" id="invert" name="invert">
+              <label for="invert">Invert Colors</label>
+            </div>
+            
+            <button type="submit" class="btn primary">Process Image</button>
+          </form>
+          
+          <div class="result-container" id="process-result">
+            <!-- Process result will be displayed here -->
+          </div>
+        </div>
+        
+        <!-- Text Tab -->
+        <div class="tab-pane" id="text">
+          <h2>Create Text Image</h2>
+          <form id="text-form">
+            <div class="form-group">
+              <label for="text">Text:</label>
+              <input type="text" id="text" name="text" required placeholder="Hello World">
+            </div>
+            
+            <div class="form-group">
+              <label for="text-filename">Output Filename:</label>
+              <input type="text" id="text-filename" name="outputFilename" required placeholder="text.png">
+            </div>
+            
+            <div class="form-group">
+              <label for="font-size">Font Size:</label>
+              <input type="number" id="font-size" name="fontSize" min="12" max="72" value="32">
+            </div>
+            
+            <div class="form-group">
+              <label for="text-color">Text Color:</label>
+              <input type="color" id="text-color" name="color" value="#ffffff">
+            </div>
+            
+            <div class="form-group">
+              <label for="bg-color">Background Color:</label>
+              <input type="color" id="bg-color" name="backgroundColor" value="#000000">
+            </div>
+            
+            <button type="submit" class="btn primary">Create Text Image</button>
+          </form>
+          
+          <div class="result-container" id="text-result">
+            <!-- Text result will be displayed here -->
+          </div>
+        </div>
+        
+        <!-- Gallery Tab -->
+        <div class="tab-pane" id="gallery">
+          <h2>Image Gallery</h2>
+          <div class="gallery-controls">
+            <button id="refresh-gallery" class="btn secondary">Refresh</button>
+          </div>
+          
+          <div class="gallery-section">
+            <h3>Screenshots</h3>
+            <div class="gallery-grid" id="screenshots-gallery">
+              <!-- Screenshots will be displayed here -->
+              <p class="empty-message">No screenshots available</p>
+            </div>
+          </div>
+          
+          <div class="gallery-section">
+            <h3>Processed Images</h3>
+            <div class="gallery-grid" id="processed-gallery">
+              <!-- Processed images will be displayed here -->
+              <p class="empty-message">No processed images available</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 LED Board Project</p>
+    </footer>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
